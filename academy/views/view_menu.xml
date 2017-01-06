@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+	<openerp>
+		<data>
+			<record model="ir.actions.act_window" id="academy_action">
+				<field name="name">Academy Hall</field>
+				<field name="res_model">academy</field>
+				<field name="view_type">form</field>
+			</record>
+			<record model="ir.actions.act_window" id="sources_action">
+				<field name="name">sources Hall</field>
+				<field name="res_model">academy.sources</field>
+				<field name="view_type">form</field>
+			</record>
+			<menuitem id="root_main_academy_link" name="Academy"/>
+			<menuitem id="main_academy" name="Main" parent="root_main_academy_link" sequence="10"/>
+			<menuitem id="Academys" name="Academys" parent="main_academy" sequence="20" action="academy_action"/>
+			<menuitem id="sources" name="courses" parent="main_academy" sequence="20" action="sources_action"/>
+		</data>
+	</openerp>

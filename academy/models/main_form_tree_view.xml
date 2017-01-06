@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+	<openerp>
+		<data>
+			<record model="ir.ui.view" id="academy_main_form_view">
+				<field name="name">Academy form</field>
+				<field name="model">academy.raul</field>
+				<field name="arch" type="xml">
+					<form string="academy_form_view">
+						<group>
+						 	<field name="name"/>
+							<field name="academy_type"/>
+							<field name="vat"/>
+							<field name="street"/>
+							<field name="email"/>
+							<field name="zip"/>
+							<field name="website"/>
+							<field name="city"/>
+							<field name="country_id"/>
+							<field name="comment"/>
+						</group>
+					</form>
+				</field>
+			</record>
+			<record model="ir.ui.view" id="academy_main_tree_view">
+				<field name="name">Academy tree </field>
+				<field name="model">academy.raul</field>
+				<field name="arch" type="xml">
+					<tree string="academy_tree_view">
+						<field name="name"/>
+						<field name="ACADEMY_TYPE_LIST">
+					</tree>
+		</data>
+	</openerp>
+

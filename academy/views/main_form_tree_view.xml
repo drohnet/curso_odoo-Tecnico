@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+	<openerp>
+		<data>
+			<record model="ir.ui.view" id="academy_main_form_view">
+				<field name="name">Academy form</field>
+				<field name="model">academy</field>
+				<field name="arch" type="xml">
+					<form string="academy_form">
+						<group>
+						 	<field name="name"/>
+							<field name="academy_type"/>
+							<field name="vat"/>
+							<field name="street"/>
+							<field name="email"/>
+							<field name="zip"/>
+							<field name="website"/>
+							<field name="city"/>
+							<field name="country_id"/>
+							<field name="comment"/>
+							
+							
+							
+						</group>
+						</form>
+							</field>
+			</record>
+			<record model="ir.ui.view" id="academy_main_tree_view">
+				<field name="name">Academy tree </field>
+				<field name="model">academy</field>
+				<field name="arch" type="xml">
+					<tree string="academy_tree_view">
+						<field name="name"/>
+						<field name="academy_type"/>
+					</tree>
+				</field>
+			</record>
+			<record model="ir.ui.view" id="sources_main_form_view">
+				<field name="name">Sources form</field>
+				<field name="model">academy.sources</field>
+				<field name="arch" type="xml">
+					<form string="sources_form">
+						<group>
+						 	<field name="name"/>
+							<field name="description"/>
+							<field name="hours"/>
+							<field name="min_student"/>
+							<field name="max_student"/>
+							<field name="price"/>
+							<field name="academy_id"/>
+							<field name="teacher_id"/>
+							
+							
+						</group>
+						</form>
+							</field>
+			</record>
+			<record model="ir.ui.view" id="sources_main_tree_view">
+				<field name="name">sources tree </field>
+				<field name="model">academy.sources</field>
+				<field name="arch" type="xml">
+					<tree string="sources_tree_view">
+						<field name="name"/>
+						<field name="hours"/>
+						<field name="min_student"/>
+						<field name="price"/>
+					</tree>
+				</field>
+			</record>
+			<record model="ir.ui.view" id="teacher_main_form_view">
+				<field name="name">teacher form</field>
+				<field name="model">academy.teacher</field>
+				<field name="arch" type="xml">
+					<form string="teacher_form">
+						<group>
+							<field name="image"/>
+						 	<field name="name"/>
+							<field name="login"/>
+							<field name="subject"/>
+							<field name="lang"/>
+							
+							
+							
+						</group>
+						</form>
+							</field>
+			</record>
+
+		</data>
+	</openerp>
+
