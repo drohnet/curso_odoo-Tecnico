@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+    <!-- Acciones -->
+        <!-- Academia hereda de res.partner y tiene 2 tipos de vista form y tree-->
+		<record model="ir.actions.act_window" id="action_academy_v2">
+			<field name="name">Academias</field>
+			<field name="res_model">res.partner</field>
+			<field name="view_type">form</field>					
+			<field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <!-- Nos filtra los datos mostrados por el agurmento dado -->
+            <field name ="domain">[('is_academy', '=', True)]</field>
+            <!-- con la accion action_academy_v2 coloca por defecto la academia publica -->
+            <!-- esta accion tmb puede realizarse desde el modelo _default -->	 
+            <field name ="context" eval = "{'default_is_academy': True, 'default_academy_type' : 'public'}"/>	 
+        </record> 
+        <!-- Academia accion de  vista lista -->       
+		<record model="ir.actions.act_window.view" id="action_academy_tree_v2">
+			<field name="view_mode">tree</field>
+            <field name="view_id" ref="academy_tree_view_v2"/>		
+            <field name="act_window_id" ref="action_academy_v2"/>
+         </record>
+         <!-- Academia accion de vista formulario -->        
+        <record model="ir.actions.act_window.view" id="action_academy_form_v2">
+			<field name="view_mode">form</field>
+            <field name="view_id" ref="academy_form_view_v2"/>		
+            <field name="act_window_id" ref="action_academy_v2"/>
+        </record>
+       <!-- Cursos -->
+		<record model="ir.actions.act_window" id="action_course_v2">
+			<field name="name">Cursos</field>
+			<field name="res_model">course</field>
+			<field name="view_type">form</field>					
+		</record>
+		<!-- Materias -->
+		<record model="ir.actions.act_window" id="action_subject_v2">
+			<field name="name">Materias</field>
+			<field name="res_model">subject</field>
+			<field name="view_type">form</field>					
+		</record>
+        <!-- Profesores -->
+		<record model="ir.actions.act_window" id="action_teacher_v2">
+			<field name="name">Profesores</field>
+            <field name="res_model">res.partner</field>
+			<field name="view_type">form</field>	
+			<field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <!-- filtra los resultado mostrados por is_teacher -->
+            <field name ="domain">[('is_teacher', '=', True)]</field>	
+            <!-- con la accion action_teacher_v2 por defecto marca como true is_teacher -->
+            <field name ="context" eval = "{'default_is_teacher': True}"/>	 		
+		</record>
+		<!-- profesores accion vista lista -->
+ 		<record model="ir.actions.act_window.view" id="action_teacher_tree_v2">
+			<field name="view_mode">tree</field>
+            <field name="view_id" ref="teacher_tree_view_v2"/>		
+            <field name="act_window_id" ref="action_teacher_v2"/>
+         </record>
+         <!-- profesores accion vista formulario -->        
+        <record model="ir.actions.act_window.view" id="action_teacher_form_v2">
+			<field name="view_mode">form</field>
+            <field name="view_id" ref="teacher_form_view_v2"/>		
+            <field name="act_window_id" ref="action_teacher_v2"/>
+        </record>
+        
+        <!-- Estudiantes -->
+		<record model="ir.actions.act_window" id="action_student_v2">
+ 			<field name="name">Estudiantes</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+			<field name="type">ir.actions.act_window</field>
+
+            <field name="view_mode">tree,form</field>
+            <!-- filtra resultados mostrados por is_student -->
+            <field name ="domain">[('is_student', '=', True)]</field>
+            <!-- con la accion action_student_v2 marca por defecto la opcion is_student -->
+            <field name ="context" eval = "{'default_is_student': True}"/>	           			
+        </record>
+        <!-- Estudiantes accion vista lista -->
+		<record model="ir.actions.act_window.view" id="action_student_tree_v2">
+			<field name="view_mode">tree</field>
+            <field name="view_id" ref="student_tree_view_v2"/>		
+            <field name="act_window_id" ref="action_student_v2"/>
+         </record>        
+         <!-- Estudiantes accion vista formulario -->
+        <record model="ir.actions.act_window.view" id="action_student_form_v2">
+			<field name="view_mode">form</field>
+            <field name="view_id" ref="student_form_view_v2"/>		
+            <field name="act_window_id" ref="action_student_v2"/>
+        </record>
+        
+    <!-- Elementos del menu -->
+		<menuitem id="main_menu_academy_v2" 
+			name="Raul academy v2"/>
+				
+        <menuitem id="menu_academy_v2" 
+			name="Gestion" 
+			parent="main_menu_academy_v2"
+			sequence="20"			/>
+			
+		<menuitem id="menu_academy_ext_v2" 
+			name="Academias" 
+			parent="menu_academy_v2"
+			sequence="30"			
+			action="action_academy_v2" />       
+				
+		<menuitem id="menu_course_ext_v2" 
+			name="Cursos" 
+			parent="menu_academy_v2"
+			sequence="40"			
+			action="action_course_v2" />
+            
+ 		<menuitem id="menu_subjecy_ext_v2" 
+			name="Asignaturas" 
+			parent="menu_academy_v2"
+			sequence="45"			
+			action="action_subject_v2" />
+           
+		<menuitem id="menu_teacher_ext_v2" 
+			name="Profesores" 
+			parent="menu_academy_v2"
+			sequence="35"			
+			action="action_teacher_v2" />
+            
+		<menuitem id="menu_student_ext_v2" 
+			name="Estudiantes" 
+			parent="menu_academy_v2"
+			sequence="50"			
+			action="action_student_v2" />
+	 </data>
+</openerp>
