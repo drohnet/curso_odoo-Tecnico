@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<!-- creacion del workflow 09/01/2017 -->
+		<!-- Creamos estados del workflow-->
+		<!-- añadido campos function y action a los estados que llaman a la funcion del modelos -->
+		<record id="wkf_academy_course" model="workflow">
+            <field name="name">course.basic</field>
+            <field name="osv">course</field>
+            <field name="on_create">True</field>
+        </record>
+        <!-- estado borrador -->
+        <record id="act_draft" model ="workflow.activity">
+			<field name="wkf_id" ref="wkf_academy_course"/>
+			<field name="flow_start">true</field>
+			<field name="name">draft</field>
+			<field name="kind">function</field>
+			<field name="action">action_draft()</field>
+        </record>
+         <!-- estado en proceso -->
+         <record id="act_process" model ="workflow.activity">
+			<field name="wkf_id" ref="wkf_academy_course"/>
+			<field name="name">in_process</field>
+			<field name="kind">function</field>
+			<field name="action">action_in_process()</field>
+        </record>
+        <!-- estado confirmado -->
+		<record id="act_confirm" model ="workflow.activity">
+			<field name="wkf_id" ref="wkf_academy_course"/>
+			<field name="name">confirmed</field>
+			<field name="kind">function</field>
+			<field name="action">action_confirmed()</field>
+        </record>
+        <!-- estado cancelado -->
+        <record id="act_cancel" model ="workflow.activity">
+			<field name="wkf_id" ref="wkf_academy_course"/>
+			<field name="flow_stop">true</field>
+			<field name="name">cancel</field>
+			<field name="kind">function</field>
+			<field name="action">action_cancel()</field>
+        </record>
+        <!-- estado realizado -->
+         <record id="act_done" model ="workflow.activity">
+			<field name="wkf_id" ref="wkf_academy_course"/>
+			<field name="flow_stop">true</field>
+			<field name="name">done</field>
+			<field name="kind">function</field>
+			<field name="action">action_done()</field>
+        </record>
+        
+        
+        
+        
+        
+        <!-- transiciones -->
+			<!-- transiciones draft a confirmado -->
+			<record id="trans_draft_confirmed" model="workflow.transition">
+				<field name="act_from" ref="act_draft"/>
+				<field name="act_to" ref="act_confirm"/>
+				<field name="signal">button_confirmed</field>
+				
+			</record>
+			<!-- transiciones draft a cancelado -->
+			<record id="trans_draft_cancel" model="workflow.transition">
+				<field name="act_from" ref="act_draft"/>
+				<field name="act_to" ref="act_cancel"/>
+				<field name="signal">button_cancel</field>	
+			</record>
+		<!-- transiciones confirmado a draft -->
+			<record id="trans_confirmed_draft" model="workflow.transition">
+				<field name="act_from" ref="act_confirm"/>
+				<field name="act_to" ref="act_draft"/>
+				<field name="signal">button_draft</field>
+				
+			</record>
+			<!-- transiciones confirmado a progress -->
+			<record id="trans_confirmed_progres" model="workflow.transition">
+				<field name="act_from" ref="act_confirm"/>
+				<field name="act_to" ref="act_process"/>
+				<field name="signal">button_in_process</field>	
+			</record>
+			<!-- transiciones progreso a hecho -->
+			<record id="trans_progres_confirmed" model="workflow.transition">
+				<field name="act_from" ref="act_process"/>
+				<field name="act_to" ref="act_done"/>
+				<field name="signal">button_done</field>	
+			</record>
+			<!-- transiciones de confirmado a cancelado-->
+			<record id="trans_confirmed_cancel" model="workflow.transition">
+				<field name="act_from" ref="act_confirm"/>
+				<field name="act_to" ref="act_cancel"/>
+				<field name="signal">button_cancel</field>
+			</record>
+			<!-- transicion de in_process a cancel -->
+			<record id="trans_progres_cancel" model="workflow.transition">
+				<field name="act_from" ref="act_process"/>
+				<field name="act_to" ref="act_cancel"/>
+				<field name="signal">button_cancel</field>	
+			</record>
+			
+			
+			
+			
+      </data>
+ </openerp> 
