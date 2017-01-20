@@ -1,0 +1,307 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+    <!-- Academia -->
+        <!-- Lista Academia-->
+        <record model="ir.ui.view" id="academy_tree_view_v2">
+                    <field name="name">Academy Tree</field>
+                    <field name="model">res.partner</field>
+                    <field name="arch" type="xml">					
+                        <tree  >
+                            <field name="name"/>	
+                            <field name="academy_type" string="Tipo de academia"/>											
+                        </tree>					
+                    </field>
+            </record>	
+        
+		<!-- Formulario Academias-->	 
+        <record model="ir.ui.view" id="academy_form_view_v2">
+                <field name="name">Academy Form</field>
+                <field name="model">res.partner</field>
+                <field name="arch" type="xml">
+                    <form string="Academy_v2">
+                        <group>
+                            <field name="name"  string="Academia"/>
+                            <field name="academy_type" string="Tipo de Academia"/>
+                           
+                        </group>
+                        
+                       <group>
+                                <field name="courses_ids"  string="Cursos"/> 							
+                            </group>
+                   </form>
+                </field>
+        </record>			
+    <!-- Curso -->
+        <!-- Lista Curso-->
+        <record model="ir.ui.view" id="course_tree_view_v2">
+                <field name="name">Course Tree</field>
+                <field name="model">course</field>
+                <field name="arch" type="xml">					
+                    <tree>
+						<field name="name" string="Nombre del curso"/>	
+                        <field name="academy_id" string = "Academias"/>				
+                        <field name="hours" string="Horas lectivas"/>
+                        <field name="price" string ="Precio"/>	
+                        <field name="state"	 string="Estado"/>					
+                    </tree>					
+                </field>
+        </record>	
+        
+        <!-- Formulario curso -->				 
+		 <record model="ir.ui.view" id="course_form_view_v2">
+				<field name="name">Course Form</field>
+				<field name="model">course</field>
+				<field name="arch" type="xml">
+					<form string="Course">
+						<header>
+							<button name="button_draft" type="workflow" states="confirmed" string="draft"/>
+							<button name="signal_confirmed" type="object" states="draft" string="confirm"/>
+							<button name="button_in_process" type="workflow" states="confirmed" string="process"/>
+							<button name="button_cancel" type="workflow" states="draft,confirmed,in_progress" string="cancel"/>
+							<button name="button_done" type="workflow" states="in_process" string="done"/>
+							<field name="state" widget="statusbar"/>
+						</header>
+						<sheet>
+						<group>
+							<field name="academy_id" domain="[('is_academy','=',True)]"/>
+							<field name="name"  string="Curso"/>
+							<field name="description" string="Notas"/>
+						</group>
+						
+
+							<group>
+									
+								<group>
+								<field name="date_start" />
+								</group>
+								<group>
+								<field name="date_end" />
+								</group>
+								
+								<group>
+								<field name="hours" string="Horas lectivas"/> 
+								</group>                               
+								<group>
+                                <field name="price" string = "Precio"/>   
+                                </group>           
+                                            
+							
+							<group>
+								<field name="max_students" string="Minimo de estudiantes" />
+								</group>
+								<group>
+								<field name="min_students" string="Maximo de estudiantes"/>	
+								</group>																			
+							</group> 
+							<group>
+							
+                           <group>
+								<field name="time_table_id" string="Time table"/>
+								</group>
+                            					
+						
+							
+						</group>
+						<div class="oe_ttitle" >
+							<center><h1>Course setup</h1></center>
+						 </div>
+						<notebook>
+                                   <page string="Subjects">
+									   <field name="subject_ids"  string="Materias"/> 
+                                   </page>
+                                    <page string="teachers">
+										<field name="teacher_ids"  string="Teachers"/> 
+                                   </page>
+                                    <page string="Students">
+										<field name="student_ids"  string="Student"/> 
+                                   </page>
+                                   </notebook>  
+                        
+						<!--<div class="oe_tittle" style="text-align:center" >
+						<h1>	
+						<label for = "subject_ids"  string="Materias"/>
+						</h1>
+						<field name="subject_ids"  string="Materias"/> 
+							
+						</div>-->
+						</sheet>						
+					</form>
+				</field>
+		</record>	
+        		
+    <!-- Materias -->
+      <!-- Lista Materias-->
+        <record model="ir.ui.view" id="subject_tree_view_v2">
+                <field name="name">Subject Tree</field>
+                <field name="model">subject</field>
+                <field name="arch" type="xml">					
+                    <tree>
+						
+                        <field name="name" string = "Nombre"/>	
+                        <field name="description" string = "Temario"/>	
+                         <field name="hours" string="Horas lectivas"/>										
+                    </tree>					
+                </field>
+        </record>	
+        
+        <!-- Formulario materias-->				 
+		 <record model="ir.ui.view" id="subject_form_view_v2">
+				<field name="name">Subject Form</field>
+				<field name="model">subject</field>
+				
+				<field name="arch" type="xml">
+					<form string="Subject">
+						<group>
+							<field name="name"  string="Materias"/>
+							<field name="description" string="Temario"/>
+                            <field name="hours" string="Horas lectivas"/> 
+                            <field name="teachers_ids" string="Profesores Disponible" eval = "{'default_is_teacher': True}"/>   
+						</group>											
+					</form>
+				</field>
+		</record>			
+
+   <!-- Profesores -->
+      <!-- Lista Profesores-->
+        <record model="ir.ui.view" id="teacher_tree_view_v2">
+                <field name="name">Teacher Tree</field>
+                <field name="model">res.partner</field>
+                <field name="arch" type="xml">					
+                    <tree>
+                        <field name="name" string = "Name of theacher"/>	
+                        <field name="surname" string="Surname"/>	
+                    </tree>					
+                </field>
+        </record>	
+        
+        <!-- Formulario Profesores-->				 
+		 <record model="ir.ui.view" id="teacher_form_view_v2">
+				<field name="name">Teacher Form</field>
+				<field name="model">res.partner</field>
+				<field name="arch" type="xml">
+					<form string="Teacher">
+						<group>
+							<field name="name"  string="First name of the teacher"/>
+							<field name="surname" string="Second name"/>
+							
+							
+						</group>	
+                        <group>
+                            <group>
+								<field name="street" string="Calle"/>
+                                <field name="zip" string="C.P."/>
+                                <field name="city" string="Población"/>
+                                <field name="state_id" string="Provincia"/>
+                                <field name="country_id" string="País"/>
+                                <field name="email" string="Correo electrónico"/>
+                                <field name="phone" string="Teléfono"/>							
+                                <field name="mobile" string="Móvil"/>
+                                
+                            </group>
+                            <group>
+															
+                            </group>
+                       	</group>							
+					</form>
+				</field>
+		</record>			
+
+   <!-- Alumnos -->
+      <!-- Lista Alumnos-->
+        <record model="ir.ui.view" id="student_tree_view_v2">
+                <field name="name">Student Tree</field>
+                <field name="model">res.partner</field>
+                <field name="arch" type="xml">					
+                    <tree>
+                        <field name="name" string="Student"/>
+                        <field name="surname" string="Second name"/>						
+                    </tree>					
+                </field>
+        </record>	
+        
+        <!-- Formulario Alumnos-->				 
+		 <record model="ir.ui.view" id="student_form_view_v2">
+				<field name="name">Student Form</field>
+				<field name="model">res.partner</field>                
+				<field name="arch" type="xml">
+					<form string="Student">
+					<group>
+						<group>
+							<field name="name"  string="Nombre de estudiante"/> 
+							<field name="surname" string="Second name"/>
+							<field name="email" string="Correo electrónico"/>
+							 <field name="phone" string="Teléfono"/>							
+                                <field name="mobile" string="Móvil"/>
+						</group>
+						<group>	
+                         <group>
+                            <field name="street" string="Calle"/>
+                                <field name="zip" string="C.P."/>
+                                <field name="city" string="Población"/>
+                                <field name="state_id" string="Provincia"/>
+                                <field name="country_id" string="País"/>	
+                                
+                            </group>
+                           </group>
+                        </group>										
+					</form>
+				</field>
+		</record>	
+		<!--time table -->
+      <!-- Lista time table-->
+        <record model="ir.ui.view" id="time_table_tree_view_v2">
+                <field name="name">time table Tree</field>
+                <field name="model">time.table</field>
+                <field name="arch" type="xml">					
+                    <tree>
+                        <field name="name" string = "Nombre del curso"/>	
+                       								
+                    </tree>					
+                </field>
+        </record>	
+        
+        <!-- Formulario time table-->				 
+		 <record model="ir.ui.view" id="time_table_form_view_v2">
+				<field name="name">time table Form</field>
+				<field name="model">time.table</field>
+				
+				<field name="arch" type="xml">
+					<form string="time table">
+						<group>
+							
+							<field name="name"  string="Nombre"/>
+							<field name="description" string="Descripcion"/>
+							<field name="type"/>
+                     
+                            <field name= "time_table_detail_ids"  string ="detalle ">
+							<!-- creo una lista editable de  dentro del campo relacionado-->
+								<tree editable="bottom">
+									<field name="name"  />
+									<field name="days_of_week" />
+									
+								</tree>
+                            </field>
+						</group>											
+					</form>
+				</field>
+		</record>
+		<!--  Formulario time table				 
+		 <record model="ir.ui.view" id="time_table_detail_form_view_v2">
+				<field name="name">time table detail Form</field>
+				<field name="model">time.table.detail</field>
+				
+				<field name="arch" type="xml">
+					<form string="time table">
+						<group>
+							<field name="name"  />
+							<field name="days_of_week" />
+							<field name="hour_start"/>
+							<field name="hour_end"/>
+						</group>											
+					</form>
+				</field>
+		</record> 
+		-->				 				 
+    </data>
+</openerp>
