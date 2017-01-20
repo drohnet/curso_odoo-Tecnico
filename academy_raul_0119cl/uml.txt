@@ -1,0 +1,14 @@
+encavezado(clase1-fecha horario-)
+	nombre
+	fecha inicio 
+	fecha fin
+	
+detalle horario(clase2- detalle horario-)
+	
+	
+	dias-	hora de comienzo -	comienzo finalizado
+	lunes	desde 				 hasta
+	martes
+	miercoles
+	jueves
+	
