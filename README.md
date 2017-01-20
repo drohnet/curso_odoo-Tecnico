@@ -8,6 +8,6 @@ v3 estados y workflow añadidos funciones en course btns wkf.
 
 v0118cl añadido time_table para horarios boton object.
 
-v0119cl añadido constrains evita academias con mismo nombre
+v0119cl añadido constrains python evita academias con mismo nombre
 
-v0120ca añadido constrais para alumnos , profesores añadido apellidos 
+v0120ca añadido constrais python para alumnos , profesores añadido apellidos 
