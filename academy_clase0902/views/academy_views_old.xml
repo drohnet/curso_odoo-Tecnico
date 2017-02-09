@@ -1,0 +1,351 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+        <!-- Academy Views -->
+		<record model="ir.ui.view" id="academy_form_view">
+			<field name="name">Academy Form</field>
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+				<form string="Academy">
+					<group>
+						<field name="name" on_change="onchange_name(name)"/>
+						<field name="academy_type"/>
+					</group>
+                    <label for="course_ids"/>
+                    <field name="course_ids" readonly="1">
+                        <tree>
+                            <field name="name" />
+                            <field name="hours" />
+                            <field name="min_students"/>
+                            <field name="max_students"/>
+                            <field name="price"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="academy_tree_view">
+			<field name="name">Academy Tree</field>
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+				<tree string="Academy">
+						<field name="name" />
+						<field name="academy_type"/>
+				</tree>
+			</field>
+		</record>
+
+        <!-- Course Views -->
+<!--
+		<record model="ir.ui.view" id="course_form_view">
+			<field name="name">Course Form</field>
+			<field name="model">course</field>
+			<field name="arch" type="xml">
+				<form string="Course">
+                    <header>
+                        <button name="button_draft" type="workflow" states="confirmed" string="Draft"/>
+                        <button name="signal_confirmed" type="object" states="draft" string="Confirm"/>
+                        <button name="button_in_process" type="workflow" states="confirmed" string="Process"/>
+                        <button name="button_cancel" type="workflow" states="draft,confirmed,in_process" string="Cancel"/>
+                        <button name="button_done" type="workflow" states="in_process" string="Done"/>
+                        <field name="state" widget='statusbar'/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="academy_id" domain="[('is_academy','=',True)]"/>
+                            <field name="name" />
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="date_start" />
+                                <field name="date_end" />
+                                <field name="hours" />
+                            </group>
+                            <group>
+                                <field name="min_students"/>
+                                <field name="max_students"/>
+                                <field name="price"/>
+                            </group>
+                        </group>
+
+
+                        <group>
+                            <field name="time_table_id" on_change="onchange_time_table_id(time_table_id)" />
+                        </group>
+
+                        <label for="time_table_id_detail_ids"/>
+                        <field name="time_table_id_detail_ids" readonly="1">
+                            <tree>
+                                <field name="sequence" widget="handle"/>
+                                <field name="name" />
+                                <field name="day_of_week"/>
+                                <field name="hour_start" widget="float_time"/>
+                                <field name="hour_end" widget="float_time"/>
+                            </tree>
+                        </field>
+
+                        <notebook>
+                            <page string="Subjects">
+                                <field name="time_table_id_detail_ids" invisible = "1"/>
+                                <field name="subject_ids" context="{'default_course_id':active_id}">
+                                    <tree>
+                                        <field name="subject_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Teachers">
+                                <field name="teacher_ids" />
+                            </page>
+                            <page string="Students">
+                                <field name="student_ids" />
+                            </page>
+                        </notebook>
+
+                    </sheet>
+				</form>
+			</field>
+		</record>
+-->
+
+        <record model="ir.ui.view" id="course_form_view_1">
+			<field name="name">Course Form</field>
+			<field name="model">course</field>
+			<field name="arch" type="xml">
+				<form string="Course">
+                    <header>
+                        <button name="button_draft" type="workflow" states="confirmed" string="Draft"/>
+                        <button name="signal_confirmed" type="object" states="draft" string="Confirm"/>
+                        <button name="button_in_process" type="workflow" states="confirmed" string="Process"/>
+                        <button name="button_cancel" type="workflow" states="draft,confirmed,in_process" string="Cancel"/>
+                        <button name="button_done" type="workflow" states="in_process" string="Done"/>
+                        <field name="state" widget='statusbar'/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="academy_id" domain="[('is_academy','=',True)]"/>
+                            <field name="name" />
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="date_start" />
+                                <field name="date_end" />
+                                <field name="hours" />
+                            </group>
+                            <group>
+                                <field name="min_students"/>
+                                <field name="max_students"/>
+                                <field name="price"/>
+                            </group>
+                        </group>
+
+
+                        <group>
+                            <field name="time_table_id" on_change="onchange_time_table_id(time_table_id)" />
+                        </group>
+
+                        <label for="time_table_id_detail_ids"/>
+                        <field name="time_table_id_detail_ids">
+                            <tree>
+                                
+                                <field name="name" />
+                                <field name="day_of_week"/>
+                                <field name="hour_start" widget="float_time"/>
+                                <field name="hour_end" widget="float_time"/>
+                            </tree>
+                        </field>
+
+                        <notebook>
+                            <page string="Subjects">
+                                <field name="time_table_id_detail_ids" invisible = "1"/>
+                                <field name="subject_ids" context="{'default_course_id':active_id}">
+                                    <tree>
+                                        <field name="subject_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Teachers">
+                                <field name="teacher_ids" />
+                            </page>
+                            <page string="Students">
+                                <field name="student_ids" />
+                            </page>
+                        </notebook>
+
+                    </sheet>
+				</form>
+			</field>
+		</record>
+
+
+        <!-- Course-Subject Views-->
+        <record model="ir.ui.view" id="course_subject_form_view">
+			<field name="name">Course Subject Form</field>
+			<field name="model">course.subject</field>
+			<field name="arch" type="xml">
+				<form string="Course Subject">
+                    <group>
+                        <group>
+                            <field name="name" invisible="0" />
+                            <field name="course_id" on_change="onchange_course_id(course_id)" invisible="0"/>
+                            <field name="subject_id" on_change="onchange_subject_id(subject_id, course_id)"/>
+                        </group>
+                    </group>
+                    <label for="child_ids"/>
+                    <field name="child_ids">
+                        <tree editable="bottom" default_order="sequence">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name" />
+                            <field name="day_of_week"/>
+                            <field name="hour_start" widget="float_time"/>
+                            <field name="hour_end" widget="float_time"/>
+                        </tree>
+                    </field>
+                    <label for="course_id_time_table_details"/>
+                    <field name="course_id_time_table_details" readonly="1">
+                        <tree>
+                            <field name="name"/>
+                            <field name="day_of_week"/>
+                            <field name="hour_start"/>
+                            <field name="hour_end"/>
+                        </tree>
+                    </field>
+
+				</form>
+			</field>
+		</record>
+
+
+        <record model="ir.ui.view" id="course_tree_view">
+			<field name="name">Course Tree</field>
+			<field name="model">course</field>
+			<field name="arch" type="xml">
+				<tree string="Course">
+                    <field name="academy_id" />
+                    <field name="name" />
+                    <field name="hours" />
+                    <field name="min_students"/>
+                    <field name="max_students"/>
+                    <field name="price"/>
+                    <field name="state"/>
+				</tree>
+			</field>
+		</record>
+
+        <!-- Teacher Views -->
+        <record model="ir.ui.view" id="teacher_tree_view">
+			<field name="name">Teacher Tree</field>
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+				<tree string="Teacher">
+                    <field name="name" />
+				</tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="teacher_form_view">
+			<field name="name">Teacher Form</field>
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+				<form string="Teacher">
+					<group>
+						<field name="name" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+        <!-- Student Views -->
+        <record model="ir.ui.view" id="student_form_view">
+			<field name="name">Student Form</field>
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+				<form string="Student">
+					<group>
+						<field name="name" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="student_tree_view">
+			<field name="name">Student Tree</field>
+			<field name="model">res.partner</field>
+			<field name="arch" type="xml">
+				<tree string="Student">
+                    <field name="name" />
+				</tree>
+			</field>
+		</record>
+
+        <!-- Time Table Views -->
+        <record model="ir.ui.view" id="time_table_tree_view">
+			<field name="name">Time Table Tree</field>
+			<field name="model">time.table</field>
+			<field name="arch" type="xml">
+				<tree string="Time table">
+                    <field name="name" />
+                    <field name="description" />
+                </tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="time_table_form_view">
+			<field name="name">Time Table Form</field>
+			<field name="model">time.table</field>
+			<field name="arch" type="xml">
+				<form string="Time table">
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="description"/>
+                        </group>
+                    </group>
+                    <field name="time_detail_ids">
+                        <tree editable="bottom" default_order="sequence">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name" />
+                            <field name="day_of_week"/>
+                            <field name="hour_start" widget="float_time"/>
+                            <field name="hour_end" widget="float_time"/>
+                        </tree>
+                    </field>
+				</form>
+			</field>
+		</record>
+
+        <!-- Subject Views -->
+        <record model="ir.ui.view" id="subject_form_view">
+			<field name="name">Subject Form</field>
+			<field name="model">subject</field>
+			<field name="arch" type="xml">
+				<form string="Subject">
+					<group>
+						<field name="name" on_change="onchange_name(name)"/>
+						<field name="hours" />
+					</group>
+                        <field name="description" />
+				</form>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="subject_tree_view">
+			<field name="name">Subject Tree</field>
+			<field name="model">subject</field>
+			<field name="arch" type="xml">
+				<tree string="Subject">
+                    <field name="name" />
+                    <field name="hours" />
+				</tree>
+			</field>
+		</record>
+
+	</data>
+</openerp>

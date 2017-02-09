@@ -1,0 +1,72 @@
+academy        # ACADEMIA
+	name
+	vat
+	street
+	email
+	phone
+	web
+	zip
+	city
+	state
+	country
+	comments
+	academy_type
+
+
+
+CURSO
+
+    name
+    description
+    hours
+    fecha inicio
+    fecha fin
+    min_students
+    max_students
+    price
+    
+    
+MATERIAS
+    name
+    description
+    hours
+        
+
+ALUMNOS
+
+         
+PROFESORES
+
+
+HORARIO
+
+    Nombre Horario - Curso X
+        nombre
+       
+        
+        Detalle Horario
+            Día        Hora    Hora
+                       desde   hasta
+             
+            Lunes      desde  Hasta
+            Martes     desde  Hasta
+            Miércoles  desde  Hasta
+            Jueves     desde  Hasta
+            Viernes    desde  Hasta
+    
+
+ASISTENCIA
+	
+
+
+
+EVALUACION
+
+
+
+
+
+
+
+
+
